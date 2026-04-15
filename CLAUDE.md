@@ -333,9 +333,11 @@ sources: []
 
 ---
 
-## 五、index.md 格式
+## 五、index.md 维护规则
 
-index.md 是全局目录，LLM 每次操作前都应读取。格式：
+index.md 是全局目录，是 LLM 导航整个 wiki 的入口。**每次操作前必须先读取 index.md**。
+
+### 格式
 
 ```markdown
 # Wiki 索引
@@ -343,36 +345,110 @@ index.md 是全局目录，LLM 每次操作前都应读取。格式：
 > 最后更新: YYYY-MM-DD | 页面总数: N
 
 ## 主题
-- [[topics/topic-name]]: 一句话描述
+- [[topics/topic-name]]: 一句话描述（≤30字）
 
 ## 概念
-- [[concepts/concept-name]]: 一句话描述
+- [[concepts/concept-name]]: 一句话描述（≤30字）
 
 ## 实体
-- [[entities/entity-name]]: 一句话描述
+- [[entities/entity-name]]: 一句话描述（≤30字）
 
 ## 来源
-- [[sources/source-name]]: 一句话描述
+- [[sources/source-name]]: 一句话描述（≤30字）
 
 ## 对比
-- [[comparisons/a-vs-b]]: 一句话描述
+- [[comparisons/a-vs-b]]: 一句话描述（≤30字）
 ```
 
-按类别分组，每个条目一行。LLM 通过读 index.md 就能了解整个 wiki 的全貌，然后决定钻入哪些页面。
+### 维护策略
+
+1. **每条一行**: 每个 wiki 页面在 index.md 中占且仅占一行，格式为 `- [[path]]: 摘要`
+2. **摘要精炼**: 每条摘要 ≤30 字，用于快速扫描定位，不是完整描述
+3. **同步更新**: 新建页面 → 添加条目；删除页面 → 移除条目；更新页面内容使摘要过时 → 刷新摘要
+4. **分类排序**: 每个分类内按字母顺序排列
+5. **页面计数**: 头部的 `页面总数: N` 必须准确反映 wiki/ 下的实际 .md 文件数（不含 index.md 和 log.md）
+6. **完整覆盖**: wiki/ 下的每个内容页面都必须在 index.md 中有对应条目（由 lint 检查）
+7. **stub 标记**: 状态为 stub 的页面在摘要末尾加 `[stub]`，如 `- [[concepts/xxx]]: 待补充 [stub]`
+
+### 规模预警
+
+当 index.md 超过 **500 行**时，说明 wiki 规模已大，应考虑：
+- 将频繁查阅的概念标记 `⭐` 前缀
+- 每个 topic 页作为该主题的子索引，index.md 只保留 topic 入口
+- 引入搜索工具（`tools/search.sh`）辅助导航
 
 ---
 
-## 六、log.md 格式
+## 六、log.md 维护规则
 
-log.md 是按时间倒序的操作日志（最新的在最前面）。
+log.md 是按时间倒序的操作日志（最新的条目在 `# 操作日志` 标题之后）。
+
+### 格式
 
 ```markdown
 # 操作日志
 
-## [YYYY-MM-DD] 操作类型 | 标题
-- 详情...
+## [YYYY-MM-DD] ingest | 源文件标题
+- 源文件: raw/xxx.md
+- 新建页面: wiki/sources/xxx.md, wiki/concepts/yyy.md
+- 更新页面: wiki/concepts/zzz.md
+- 新增链接: yyy ↔ zzz
+
+## [YYYY-MM-DD] query | 问题简述
+- 查阅页面: wiki/concepts/xxx.md, wiki/entities/yyy.md
+- 归档: 是 → wiki/concepts/new-insight.md
+- 归档: 否
+
+## [YYYY-MM-DD] lint | 健康检查
+- 检查页面数: N
+- 发现问题: 断链 3, 孤儿页 1
+- 修复: 创建 2 个 stub, 添加 1 个引用
+- 待处理: 1 个矛盾需人工判断
 ```
 
-操作类型: `ingest` | `query` | `lint`
+### 维护策略
 
-每次操作完成后必须追加一条记录。
+1. **时间倒序**: 最新记录紧跟在标题之后（插入位置: `# 操作日志` 的下一行）
+2. **每次操作必记**: ingest / query / lint 完成后都必须写一条日志
+3. **保持简洁**: 每条日志 ≤10 行，只记关键变更事实
+4. **可 grep**: 操作类型固定为 `ingest` | `query` | `lint`，方便 `grep "ingest" wiki/log.md` 过滤
+
+---
+
+## 七、查询归档规则
+
+查询（Query）产生的有价值回答应归档回 wiki，实现知识复利。
+
+### 归档判断标准
+
+**应该归档** 的情况：
+- 回答综合了 3+ 个 wiki 页面的信息，产生了新的洞察
+- 回答揭示了现有页面未明确记录的关联或对比
+- 回答纠正了现有页面中的错误或补充了重要缺失信息
+- 回答可以独立成文，对未来查询有复用价值
+
+**不应归档** 的情况：
+- 回答只是简单复述了单个页面的内容
+- 回答是临时性的（如"帮我列个清单"）
+- 回答的信息已完整存在于现有页面
+
+### 归档方式
+
+1. **新建页面**: 如果回答产生了新概念/新对比/新主题 → 创建对应类型的新页面
+2. **更新现有页面**: 如果回答深化了某个已有概念 → 增量追加到该概念页的相关章节
+3. **混合**: 一次归档可能同时新建 + 更新多个页面
+
+### 归档流程
+
+1. LLM 完成回答后，评估归档价值
+2. 如果值得归档 → 向用户建议: "建议归档到 [[concepts/xxx]]，是否同意？"
+3. 用户同意后 → 执行归档（创建/更新页面 + 更新 index.md）
+4. 在 log.md 中记录归档详情
+5. 如果用户拒绝 → 仅在 log.md 中记录查询（归档: 否）
+
+### 归档页面命名
+
+- 从查询回答中提炼最核心的概念作为文件名
+- 使用 kebab-case: `wiki/concepts/llm-vs-rag-tradeoffs.md`
+- 如果是对比类回答 → 放入 `wiki/comparisons/`
+- 如果是某主题的综合分析 → 考虑放入 `wiki/topics/`
