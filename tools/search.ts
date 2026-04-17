@@ -1,8 +1,8 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
 /**
- * tools/search.mjs — LLM Wiki 全文搜索
+ * tools/search.ts — LLM Wiki 全文搜索
  *
- * 用法: node tools/search.mjs <query> [options]
+ * 用法: pnpm search <query> [options]
  *
  * 选项:
  *   -t, --type <type>   限定页面类型 (concept|entity|source|comparison|topic)
@@ -11,16 +11,19 @@
  *   --titles            只在标题中搜索
  *   --tags              只在 tags 字段中搜索
  *   --json              JSON 格式输出（便于 LLM / CLI 管道）
- *
- * 示例:
- *   node tools/search.mjs "transformer"
- *   node tools/search.mjs "attention" -t concept -n 5
- *   node tools/search.mjs "karpathy" -a --json
  */
 
 import fs from "node:fs";
-import path from "node:path";
 import matter from "gray-matter";
+import { collectAllMd } from "./lib.js";
+
+interface SearchResult {
+  file: string;
+  title: string;
+  type: string;
+  status: string;
+  matches: { line: number; text: string }[];
+}
 
 // ── 参数解析 ──
 
@@ -62,36 +65,18 @@ for (let i = 0; i < args.length; i++) {
 }
 
 if (!query) {
-  console.error("用法: node tools/search.mjs <query> [options]");
+  console.error("用法: pnpm search <query> [options]");
   process.exit(1);
 }
 
-// ── 收集待搜索文件 ──
+// ── 收集文件 ──
 
-function collectFiles(dir) {
-  const files = [];
-  if (!fs.existsSync(dir)) return files;
-  const walk = (d) => {
-    for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
-      const full = path.join(d, entry.name);
-      if (entry.isDirectory()) {
-        if (entry.name.startsWith(".")) continue;
-        walk(full);
-      } else if (entry.name.endsWith(".md")) {
-        files.push(full);
-      }
-    }
-  };
-  walk(dir);
-  return files;
-}
-
-let files = collectFiles("wiki");
-if (searchRaw) files = files.concat(collectFiles("raw"));
+let files = collectAllMd("wiki");
+if (searchRaw) files = files.concat(collectAllMd("raw"));
 
 // 类型过滤
 if (pageType) {
-  const dirMap = {
+  const dirMap: Record<string, string> = {
     concept: "concepts",
     entity: "entities",
     source: "sources",
@@ -109,18 +94,17 @@ if (pageType) {
 // ── 搜索 ──
 
 const queryLower = query.toLowerCase();
-const results = [];
+const results: SearchResult[] = [];
 
 for (const file of files) {
   if (results.length >= maxResults) break;
 
   const raw = fs.readFileSync(file, "utf-8");
-  let { data: fm, content } = matter(raw);
+  const { data: fm } = matter(raw);
 
-  // 决定搜索范围
-  let searchText;
+  let searchText: string;
   if (titleOnly) {
-    searchText = (fm.title || "") + " " + path.basename(file, ".md");
+    searchText = String(fm.title ?? "");
   } else if (tagsOnly) {
     searchText = Array.isArray(fm.tags) ? fm.tags.join(" ") : "";
   } else {
@@ -129,9 +113,8 @@ for (const file of files) {
 
   if (!searchText.toLowerCase().includes(queryLower)) continue;
 
-  // 找匹配行（最多 3 行上下文）
   const lines = raw.split("\n");
-  const matchLines = [];
+  const matchLines: { line: number; text: string }[] = [];
   for (let i = 0; i < lines.length && matchLines.length < 3; i++) {
     if (lines[i].toLowerCase().includes(queryLower)) {
       matchLines.push({ line: i + 1, text: lines[i].trim() });
@@ -140,9 +123,9 @@ for (const file of files) {
 
   results.push({
     file,
-    title: fm.title || "(无标题)",
-    type: fm.type || "?",
-    status: fm.status || "?",
+    title: String(fm.title ?? "(无标题)"),
+    type: String(fm.type ?? "?"),
+    status: String(fm.status ?? "?"),
     matches: matchLines,
   });
 }

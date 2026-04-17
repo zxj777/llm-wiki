@@ -1,8 +1,8 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
 /**
- * tools/lint.mjs — LLM Wiki 健康检查
+ * tools/lint.ts — LLM Wiki 健康检查
  *
- * 用法: node tools/lint.mjs [wiki_dir]
+ * 用法: pnpm lint [wiki_dir]
  *
  * 检查项:
  *   1. 断链（[[link]] 指向不存在的页面）
@@ -16,10 +16,10 @@
 import {
   collectPages,
   parsePage,
-  pageId,
   parseIndexLinks,
   REQUIRED_FIELDS,
-} from "./lib.mjs";
+  type PageData,
+} from "./lib.js";
 
 const WIKI_DIR = process.argv[2] || "wiki";
 
@@ -31,22 +31,22 @@ const NC = "\x1b[0m";
 let errors = 0;
 let warnings = 0;
 
-function logError(msg) {
+function logError(msg: string) {
   console.log(`${RED}✗ ${msg}${NC}`);
   errors++;
 }
-function logWarn(msg) {
+function logWarn(msg: string) {
   console.log(`${YELLOW}⚠ ${msg}${NC}`);
   warnings++;
 }
-function logOk(msg) {
+function logOk(msg: string) {
   console.log(`${GREEN}✓ ${msg}${NC}`);
 }
 
-// ── 收集页面 ──
+// ── 收集与解析 ──
 
 const pages = collectPages(WIKI_DIR);
-const parsed = pages.map((p) => ({ ...parsePage(p), id: pageId(p, WIKI_DIR) }));
+const parsed: PageData[] = pages.map((p) => parsePage(p, WIKI_DIR));
 const existingIds = new Set(parsed.map((p) => p.id));
 
 console.log("═══════════════════════════════════");
@@ -72,7 +72,7 @@ console.log();
 // ── 2. 孤儿页 ──
 
 console.log("── 2. 孤儿页检查 ──");
-const referenced = new Set();
+const referenced = new Set<string>();
 for (const page of parsed) {
   for (const link of page.links) referenced.add(link);
 }

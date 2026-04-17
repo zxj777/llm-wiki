@@ -4,12 +4,21 @@
   "type": "module",
   "description": "基于 Karpathy 的 LLM Knowledge Base 理念，用 LLM 增量编译和维护的个人知识库。",
   "scripts": {
-    "lint": "node tools/lint.mjs",
-    "search": "node tools/search.mjs"
+    "lint": "tsx tools/lint.ts",
+    "wiki:search": "tsx tools/search.ts"
   },
-  "keywords": ["llm", "wiki", "knowledge-base"],
+  "keywords": [
+    "llm",
+    "wiki",
+    "knowledge-base"
+  ],
   "license": "ISC",
   "dependencies": {
     "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
   }
 }
