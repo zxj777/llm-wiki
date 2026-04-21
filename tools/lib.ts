@@ -20,6 +20,15 @@ export interface PageData {
   links: string[];
 }
 
+export interface PageSummary {
+  id: string;
+  path: string;
+  title: string;
+  type: string;
+  status: string;
+  sources: string[];
+}
+
 export const REQUIRED_FIELDS = [
   "title",
   "type",
@@ -73,6 +82,20 @@ export function parsePage(filePath: string, wikiDir = WIKI_DIR): PageData {
   };
 }
 
+export function summarizePage(filePath: string, wikiDir = WIKI_DIR): PageSummary {
+  const page = parsePage(filePath, wikiDir);
+  return {
+    id: page.id,
+    path: page.path,
+    title: String(page.frontmatter.title ?? "(无标题)"),
+    type: String(page.frontmatter.type ?? "unknown"),
+    status: String(page.frontmatter.status ?? "unknown"),
+    sources: Array.isArray(page.frontmatter.sources)
+      ? page.frontmatter.sources.map((source) => String(source))
+      : [],
+  };
+}
+
 /** 解析 index.md 中的所有 [[link]] */
 export function parseIndexLinks(wikiDir = WIKI_DIR): string[] {
   const indexPath = path.join(wikiDir, "index.md");
@@ -97,4 +120,50 @@ export function collectAllMd(dir: string): string[] {
   };
   walk(dir);
   return files;
+}
+
+export function ensureDir(dir: string): void {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+export function ensureFile(filePath: string, content: string): void {
+  if (!fs.existsSync(filePath)) {
+    ensureDir(path.dirname(filePath));
+    fs.writeFileSync(filePath, content, "utf-8");
+  }
+}
+
+export function today(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+export function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[`"'“”‘’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function extractDocumentTitle(filePath: string): string {
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(raw);
+  if (typeof data.title === "string" && data.title.trim()) {
+    return data.title.trim();
+  }
+
+  const heading = content
+    .split("\n")
+    .map((line) => line.trim())
+    .find((line) => line.startsWith("# "));
+  if (heading) {
+    return heading.replace(/^#\s+/, "").trim();
+  }
+
+  return path.basename(filePath, path.extname(filePath));
+}
+
+export function listPageSummaries(wikiDir = WIKI_DIR): PageSummary[] {
+  return collectPages(wikiDir).map((filePath) => summarizePage(filePath, wikiDir));
 }
