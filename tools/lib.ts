@@ -42,14 +42,19 @@ export const REQUIRED_FIELDS = [
 /** 递归收集 wiki/ 下所有 .md 页面（排除 index.md, log.md） */
 export function collectPages(wikiDir = WIKI_DIR): string[] {
   const pages: string[] = [];
-  for (const sub of CONTENT_DIRS) {
-    const dir = path.join(wikiDir, sub);
-    if (!fs.existsSync(dir)) continue;
-    for (const file of fs.readdirSync(dir)) {
-      if (file.endsWith(".md")) {
-        pages.push(path.join(wikiDir, sub, file));
+  function walk(dir: string) {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+        pages.push(full);
       }
     }
+  }
+  for (const sub of CONTENT_DIRS) {
+    walk(path.join(wikiDir, sub));
   }
   return pages;
 }
