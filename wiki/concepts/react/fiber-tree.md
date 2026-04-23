@@ -2,10 +2,10 @@
 title: Fiber 树结构
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, fiber, tree]
 status: active
-sources: [raw/acdlite-react-fiber-architecture.md, raw/dan-abramov-react-as-ui-runtime.md]
+sources: [raw/react/acdlite-react-fiber-architecture.md, raw/react/dan-abramov-react-as-ui-runtime.md]
 ---
 
 # Fiber 树结构

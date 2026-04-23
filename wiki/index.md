@@ -1,6 +1,6 @@
 # Wiki 索引
 
-> 最后更新: 2026-04-21 | 页面总数: 60
+> 最后更新: 2026-04-23 | 页面总数: 65
 
 ## 主题
 
@@ -25,6 +25,7 @@
 - [[topics/react/strict-mode]]: Strict Mode 内部机制（双重调用）
 - [[topics/react/custom-renderer]]: 自定义渲染器与 hostConfig
 - [[topics/react/package-architecture]]: React 包架构与 renderer 解耦
+- [[topics/ai-flow/ai-coding]]: AI Coding 工程实践（AGENTS.md、Harness Engineering、验证闭环）
 
 ## 概念
 
@@ -48,6 +49,8 @@
 - [[concepts/react/synthetic-events]]: 合成事件（Synthetic Events）
 - [[concepts/react/time-slicing]]: 时间切片（Time Slicing，5ms 时间片）
 - [[concepts/react/work-loop]]: Work Loop（工作循环，驱动 Fiber 遍历）
+- [[concepts/ai-flow/agents-md]]: 给 AI Agent 的项目上下文文件格式（地图而非手册）
+- [[concepts/ai-flow/harness-engineering]]: 让 AI 自主完成改构建启动验证闭环的工程方法
 
 ## 实体
 
@@ -58,6 +61,7 @@
 - [[entities/react/react-scheduler]]: react-scheduler 包（MessageChannel 调度、最小堆、5ms 时间片、5 个优先级）
 - [[entities/react/update-queue]]: UpdateQueue 数据结构（UpdateQueue/Update 结构、enqueueUpdate、processUpdateQueue、优先级处理）
 - [[entities/react/work-in-progress-tree]]: workInProgress 树（双缓冲、createWorkInProgress 复用策略、生命周期）
+- [[entities/ai-flow/kiritomoe]]: 技术博主，AI Coding 实践系列作者，AGENTS.md 方法论提出者
 
 ## 对比
 
@@ -72,7 +76,8 @@
 
 ## 来源
 
-- [[sources/acdlite-react-fiber-architecture]]: Fiber 架构原始解析，Andrew Clark 著，涵盖 Fiber 字段与调度原理
-- [[sources/dan-abramov-react-as-ui-runtime]]: React 作为 UI 运行时，Dan Abramov 著，涵盖 host tree/reconciliation/hooks 链表
-- [[sources/kasong-react-source-book]]: React 技术揭秘，kasong 著，中文 React 源码分析全书（v17）
-- [[sources/react-official-reconciliation]]: React 官方文档 Reconciliation，O(n) diff 算法与 key 规则权威来源
+- [[sources/react/acdlite-react-fiber-architecture]]: Fiber 架构原始解析，Andrew Clark 著，涵盖 Fiber 字段与调度原理
+- [[sources/react/dan-abramov-react-as-ui-runtime]]: React 作为 UI 运行时，Dan Abramov 著，涵盖 host tree/reconciliation/hooks 链表
+- [[sources/react/kasong-react-source-book]]: React 技术揭秘，kasong 著，中文 React 源码分析全书（v17）
+- [[sources/react/react-official-reconciliation]]: React 官方文档 Reconciliation，O(n) diff 算法与 key 规则权威来源
+- [[sources/ai-flow/一个文件让 AI Coding 效率翻倍：AGENTS.md 实践指南]]: kiritomoe 著，AGENTS.md 编写指南与五大工程实践

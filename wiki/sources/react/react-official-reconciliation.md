@@ -2,10 +2,10 @@
 title: "Reconciliation — React 官方文档"
 type: source
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, reconciliation, diff, keys, official]
 status: active
-sources: [raw/react-official-reconciliation.md]
+sources: [raw/react/react-official-reconciliation.md]
 ---
 
 # Reconciliation — React 官方文档

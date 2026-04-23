@@ -2,10 +2,10 @@
 title: 并发模式（Concurrent Mode）
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, concurrent]
 status: active
-sources: [raw/kasong-react-source-book.md]
+sources: [raw/react/kasong-react-source-book.md]
 ---
 
 # 并发模式（Concurrent Mode）

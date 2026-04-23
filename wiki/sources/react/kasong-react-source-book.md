@@ -2,10 +2,10 @@
 title: "React 技术揭秘"
 type: source
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, source-code, chinese, internals, book]
 status: active
-sources: [raw/kasong-react-source-book.md]
+sources: [raw/react/kasong-react-source-book.md]
 ---
 
 # React 技术揭秘

@@ -2,10 +2,10 @@
 title: 双缓冲（Double Buffering）
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, fiber, concurrent]
 status: active
-sources: [raw/acdlite-react-fiber-architecture.md]
+sources: [raw/react/acdlite-react-fiber-architecture.md]
 ---
 
 # 双缓冲（Double Buffering）

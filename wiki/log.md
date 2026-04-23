@@ -1,5 +1,19 @@
 # 操作日志
 
+## [2026-04-23] lint | 健康检查
+- 检查页面数: 65
+- 发现问题: 断链 0, 孤儿页 5（4 个 source 页 + 1 个 topic 页）, 矛盾 0, frontmatter 不完整 0, 过时 0
+- 修复: topics/react/source-code.md 新增 4 个 source 引用，ai-flow source 页新增 topic 引用
+- 待处理: 无
+
+## [2026-04-23] ingest | AGENTS.md 实践指南 + React source 路径修复
+- 源文件: raw/ai-flow/一个文件让 AI Coding 效率翻倍：AGENTS.md 实践指南.md
+- React source 路径修复: wiki/sources/ 根目录 4 个文件移入 wiki/sources/react/
+- 更新 sources 字段: 15 个 wiki 页面旧路径 raw/xxx.md → raw/react/xxx.md
+- 新建页面: wiki/sources/ai-flow/一个文件让 AI Coding 效率翻倍：AGENTS.md 实践指南.md, wiki/concepts/ai-flow/agents-md.md, wiki/concepts/ai-flow/harness-engineering.md, wiki/entities/ai-flow/kiritomoe.md, wiki/topics/ai-flow/ai-coding.md
+- 新增链接: agents-md ↔ harness-engineering, agents-md → kiritomoe, harness-engineering → kiritomoe, ai-coding → 全部 ai-flow 页面
+- 更新: index.md 页面数 60 → 65，source 条目路径修正，新增 ai-flow 条目
+
 ## [2026-04-21] ingest | 4篇 React 源码核心参考文章
 - 源文件: raw/acdlite-react-fiber-architecture.md, raw/dan-abramov-react-as-ui-runtime.md, raw/kasong-react-source-book.md, raw/react-official-reconciliation.md
 - 新建页面: wiki/sources/acdlite-react-fiber-architecture.md, wiki/sources/dan-abramov-react-as-ui-runtime.md, wiki/sources/kasong-react-source-book.md, wiki/sources/react-official-reconciliation.md

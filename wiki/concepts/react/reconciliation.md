@@ -2,10 +2,10 @@
 title: Reconciliation（协调）
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, diff, reconciliation]
 status: active
-sources: [raw/acdlite-react-fiber-architecture.md, raw/react-official-reconciliation.md, raw/dan-abramov-react-as-ui-runtime.md, raw/kasong-react-source-book.md]
+sources: [raw/react/acdlite-react-fiber-architecture.md, raw/react/react-official-reconciliation.md, raw/react/dan-abramov-react-as-ui-runtime.md, raw/react/kasong-react-source-book.md]
 ---
 
 # Reconciliation（协调）

@@ -2,10 +2,10 @@
 title: Host Config（宿主配置）
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, renderer, custom]
 status: active
-sources: [raw/dan-abramov-react-as-ui-runtime.md]
+sources: [raw/react/dan-abramov-react-as-ui-runtime.md]
 ---
 
 # Host Config（宿主配置）

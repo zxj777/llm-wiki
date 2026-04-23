@@ -2,10 +2,10 @@
 title: Fiber 架构
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, fiber, architecture]
 status: active
-sources: [raw/acdlite-react-fiber-architecture.md, raw/dan-abramov-react-as-ui-runtime.md, raw/kasong-react-source-book.md]
+sources: [raw/react/acdlite-react-fiber-architecture.md, raw/react/dan-abramov-react-as-ui-runtime.md, raw/react/kasong-react-source-book.md]
 ---
 
 # Fiber 架构

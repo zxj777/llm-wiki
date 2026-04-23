@@ -2,10 +2,10 @@
 title: Reconciliation 与 Diff 算法
 type: topic
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, source-code, reconciliation, diff, frontend]
 status: active
-sources: [raw/react-official-reconciliation.md, raw/acdlite-react-fiber-architecture.md]
+sources: [raw/react/react-official-reconciliation.md, raw/react/acdlite-react-fiber-architecture.md]
 ---
 
 # Reconciliation 与 Diff 算法

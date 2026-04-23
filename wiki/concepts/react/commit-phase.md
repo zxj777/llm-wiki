@@ -2,10 +2,10 @@
 title: Commit 阶段
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, dom, commit]
 status: active
-sources: [raw/kasong-react-source-book.md]
+sources: [raw/react/kasong-react-source-book.md]
 ---
 
 # Commit 阶段

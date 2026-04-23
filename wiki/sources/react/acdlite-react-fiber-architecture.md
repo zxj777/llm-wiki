@@ -2,10 +2,10 @@
 title: "React Fiber Architecture"
 type: source
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, fiber, architecture, internals]
 status: active
-sources: [raw/acdlite-react-fiber-architecture.md]
+sources: [raw/react/acdlite-react-fiber-architecture.md]
 ---
 
 # React Fiber Architecture

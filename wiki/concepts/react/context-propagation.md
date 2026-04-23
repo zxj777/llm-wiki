@@ -2,10 +2,10 @@
 title: Context 传播
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, context]
 status: active
-sources: [raw/dan-abramov-react-as-ui-runtime.md]
+sources: [raw/react/dan-abramov-react-as-ui-runtime.md]
 ---
 
 # Context 传播

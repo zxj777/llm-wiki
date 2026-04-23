@@ -2,10 +2,10 @@
 title: Render 阶段
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, render]
 status: active
-sources: [raw/kasong-react-source-book.md, raw/dan-abramov-react-as-ui-runtime.md]
+sources: [raw/react/kasong-react-source-book.md, raw/react/dan-abramov-react-as-ui-runtime.md]
 ---
 
 # Render 阶段

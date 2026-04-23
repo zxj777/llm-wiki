@@ -2,10 +2,10 @@
 title: Hooks 底层机制
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, hooks]
 status: active
-sources: [raw/dan-abramov-react-as-ui-runtime.md, raw/kasong-react-source-book.md]
+sources: [raw/react/dan-abramov-react-as-ui-runtime.md, raw/react/kasong-react-source-book.md]
 ---
 
 # Hooks 底层机制

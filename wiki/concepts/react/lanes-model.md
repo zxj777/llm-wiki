@@ -2,10 +2,10 @@
 title: Lanes 优先级模型
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, priority, lanes]
 status: active
-sources: [raw/kasong-react-source-book.md]
+sources: [raw/react/kasong-react-source-book.md]
 ---
 
 # Lanes 优先级模型

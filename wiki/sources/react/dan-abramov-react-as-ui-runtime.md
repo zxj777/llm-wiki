@@ -2,10 +2,10 @@
 title: "React as a UI Runtime"
 type: source
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, runtime, reconciliation, host-config, hooks]
 status: active
-sources: [raw/dan-abramov-react-as-ui-runtime.md]
+sources: [raw/react/dan-abramov-react-as-ui-runtime.md]
 ---
 
 # React as a UI Runtime

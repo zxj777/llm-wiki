@@ -2,10 +2,10 @@
 title: React 源码阅读总入口
 type: topic
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, source-code, frontend]
 status: active
-sources: [raw/kasong-react-source-book.md]
+sources: [raw/react/kasong-react-source-book.md]
 ---
 
 # React 源码阅读总入口
@@ -174,6 +174,13 @@ packages/react/src/
 - [[comparisons/react/memo-vs-usememo-vs-usecallback]]：React.memo vs useMemo vs useCallback
 - [[comparisons/react/lanes-vs-expiration-time]]：Lanes 模型 vs Expiration Time
 - [[comparisons/react/current-tree-vs-workinprogress]]：current 树 vs workInProgress 树
+
+## 重要来源
+
+- [[sources/react/acdlite-react-fiber-architecture]]：Fiber 架构原始解析，Andrew Clark 著
+- [[sources/react/dan-abramov-react-as-ui-runtime]]：React 作为 UI 运行时，Dan Abramov 著
+- [[sources/react/kasong-react-source-book]]：React 技术揭秘，kasong 著（中文，v17）
+- [[sources/react/react-official-reconciliation]]：React 官方 Reconciliation 文档
 
 ## 开放问题
 

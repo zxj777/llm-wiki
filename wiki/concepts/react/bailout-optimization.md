@@ -2,10 +2,10 @@
 title: Bailout 优化
 type: concept
 created: 2026-04-21
-updated: 2026-04-21
+updated: 2026-04-23
 tags: [react, performance, memo]
 status: active
-sources: [raw/dan-abramov-react-as-ui-runtime.md]
+sources: [raw/react/dan-abramov-react-as-ui-runtime.md]
 ---
 
 # Bailout 优化
