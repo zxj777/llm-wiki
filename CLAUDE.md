@@ -11,24 +11,39 @@ llm-wiki/
 ├── raw/                  # 原始数据（只读，人类管理）
 │   ├── *.md              # Web Clipper 抓取的文章
 │   ├── *.pdf             # 论文、报告
+│   ├── <subdir>/         # 人类自定义的子目录（如 ai-flow/、papers/）
 │   └── assets/           # 图片（Obsidian attachment folder）
 │
 ├── wiki/                 # LLM 生成并维护的 wiki（LLM 全权负责）
 │   ├── index.md          # 全局索引
 │   ├── log.md            # 操作日志
-│   ├── concepts/         # 概念页
-│   ├── entities/         # 实体页（人物、组织、项目）
-│   ├── sources/          # 源文件摘要页
-│   ├── comparisons/      # 对比分析页
-│   └── topics/           # 主题概览页
+│   ├── concepts/         # 概念页（镜像 raw/ 目录结构）
+│   │   └── <subdir>/     # 与 raw/<subdir>/ 对应的子目录
+│   ├── entities/         # 实体页（镜像 raw/ 目录结构）
+│   │   └── <subdir>/
+│   ├── sources/          # 源文件摘要页（镜像 raw/ 目录结构）
+│   │   └── <subdir>/
+│   ├── comparisons/      # 对比分析页（镜像 raw/ 目录结构）
+│   │   └── <subdir>/
+│   └── topics/           # 主题概览页（镜像 raw/ 目录结构）
+│       └── <subdir>/
 │
-└── CLAUDE.md             # 本文件（schema，不可修改）
+└── CLAUDE.md             # 本文件（schema 规范）
 ```
+
+### 目录镜像规则
+
+- **raw/ 根目录下的文件** → wiki 各分类目录的根层级
+  - 例：`raw/foo.md` → `wiki/sources/foo.md`, `wiki/concepts/bar.md`
+- **raw/ 子目录下的文件** → wiki 各分类目录下的同名子目录
+  - 例：`raw/ai-flow/foo.md` → `wiki/sources/ai-flow/foo.md`, `wiki/concepts/ai-flow/bar.md`
+- **子目录命名**: 与 raw/ 中保持完全一致，不做转换
+- **跨目录概念**: 如果一个概念被多个 raw/ 子目录的文件引用，概念页放在第一次出现的子目录下，后续通过 `[[]]` 链接引用，不重复创建
 
 ### 权限规则
 - **raw/**: LLM **只读**，绝不修改
 - **wiki/**: LLM **可读写**，是 LLM 的唯一工作区
-- **CLAUDE.md**: LLM **只读**，仅人类可修改
+- **CLAUDE.md**: LLM **可读写**，可根据用户指示修改 schema 规范
 - **PLAN.md / README.md**: LLM **只读**
 
 ---
@@ -55,7 +70,7 @@ sources: [raw/文件名.md, raw/文件名2.md]
 
 #### 1. Source（源摘要页）— `wiki/sources/`
 
-每个 raw/ 文件对应一个源摘要页。文件名与 raw/ 保持一致。
+每个 raw/ 文件对应一个源摘要页。文件名与 raw/ 保持一致，**目录层级也与 raw/ 保持一致**（如 `raw/ai-flow/foo.md` → `wiki/sources/ai-flow/foo.md`）。
 
 ```markdown
 ---
@@ -228,7 +243,7 @@ sources: []
 1. **读取 CLAUDE.md**（本文件）
 2. **读取 wiki/index.md** 了解现有知识结构
 3. **读取 raw/ 中的目标文件**
-4. **创建源摘要页** `wiki/sources/<filename>.md`
+4. **创建源摘要页** `wiki/sources/<subdir>/<filename>.md`（子目录与 raw/ 保持一致，根目录文件则直接放 `wiki/sources/<filename>.md`）
 5. **识别概念和实体**，对每个：
    - 如果已有页面 → 读取并**增量更新**（添加新信息，不重写已有内容）
    - 如果没有页面 → 创建新页面（可以是 stub 状态）
