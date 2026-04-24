@@ -1,5 +1,11 @@
 # 操作日志
 
+## [2026-04-24] ingest | Harness Engineering 最佳实践完整文档
+- 来源: /Users/zhuxiaojiang/work/flow-abc/harness-best-practices.md（AI 整理的综合文档）
+- 更新页面: wiki/concepts/ai-flow/harness-engineering.md（从 2KB  stub 扩展为 50KB+ 完整文档）
+- 内容覆盖: Spec-Then-Build with Gates、Co-Design、Autonomous Build、Validation、Harness 四层模型、反模式、成熟度路径、术语表
+- 新增: 文末"相关 Wiki 概念"链接区
+
 ## [2026-04-23] lint | 健康检查
 - 检查页面数: 65
 - 发现问题: 断链 0, 孤儿页 5（4 个 source 页 + 1 个 topic 页）, 矛盾 0, frontmatter 不完整 0, 过时 0
