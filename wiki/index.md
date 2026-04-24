@@ -1,6 +1,6 @@
 # Wiki 索引
 
-> 最后更新: 2026-04-23 | 页面总数: 65
+> 最后更新: 2026-04-24 | 页面总数: 67
 
 ## 主题
 
@@ -51,6 +51,7 @@
 - [[concepts/react/work-loop]]: Work Loop（工作循环，驱动 Fiber 遍历）
 - [[concepts/ai-flow/agents-md]]: 给 AI Agent 的项目上下文文件格式（地图而非手册）
 - [[concepts/ai-flow/harness-engineering]]: 让 AI 自主完成改构建启动验证闭环的工程方法
+- [[concepts/ai-flow/monorepo-harness]]: 在全栈 monorepo 中落地 Harness 的分层治理
 
 ## 实体
 
@@ -81,3 +82,4 @@
 - [[sources/react/kasong-react-source-book]]: React 技术揭秘，kasong 著，中文 React 源码分析全书（v17）
 - [[sources/react/react-official-reconciliation]]: React 官方文档 Reconciliation，O(n) diff 算法与 key 规则权威来源
 - [[sources/ai-flow/一个文件让 AI Coding 效率翻倍：AGENTS.md 实践指南]]: kiritomoe 著，AGENTS.md 编写指南与五大工程实践
+- [[sources/ai-flow/monorepo-harness-plan]]: 全栈 monorepo 的 Harness 引入蓝图

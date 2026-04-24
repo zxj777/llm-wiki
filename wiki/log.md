@@ -1,5 +1,63 @@
 # 操作日志
 
+## [2026-04-24] query | contracts 是什么
+- 查阅页面: wiki/concepts/ai-flow/monorepo-harness.md, wiki/sources/ai-flow/monorepo-harness-plan.md
+- 归档: 否
+
+## [2026-04-24] query | 八大支柱为何是这八个
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] ingest | Monorepo Harness 引入计划
+- 来源: /Users/zhuxiaojiang/work/flow-abc/monorepo-harness-plan.md（AI 整理的场景化方案文档）
+- 新建页面: wiki/sources/ai-flow/monorepo-harness-plan.md, wiki/concepts/ai-flow/monorepo-harness.md
+- 更新页面: wiki/topics/ai-flow/ai-coding.md, wiki/concepts/ai-flow/harness-engineering.md
+- 新增链接: monorepo-harness ↔ harness-engineering, ai-coding → monorepo-harness, source → monorepo-harness
+
+## [2026-04-24] query | 事件格式的作用
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | Spec 中事件格式的含义
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | Spec 接口契约示例
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | Spec v1 到 v2 如何体现
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | P2 中途需求变更的状态流转
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | 需求变更如何留痕
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | Spec 中契约的含义
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | P2 后期新增字段如何流转
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | 哪些变更不算需求变更
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | 需求变更时的系统流转
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
+## [2026-04-24] query | Spec 缺少 featureId 的影响
+- 查阅页面: wiki/concepts/ai-flow/harness-engineering.md
+- 归档: 否
+
 ## [2026-04-24] ingest | Harness Engineering 最佳实践完整文档
 - 来源: /Users/zhuxiaojiang/work/flow-abc/harness-best-practices.md（AI 整理的综合文档）
 - 更新页面: wiki/concepts/ai-flow/harness-engineering.md（从 2KB  stub 扩展为 50KB+ 完整文档）
