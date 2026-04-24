@@ -1,5 +1,11 @@
 # 操作日志
 
+## [2026-04-24] lint | 修复 index/log 合并冲突
+- 检查页面数: 172
+- 发现问题: index.md 头部元信息重复 1 处，log.md 条目间缺少空行 1 处
+- 修复: index.md 统一为 2026-04-24 / 172 页，log.md 保留双方内容并恢复格式
+- 待处理: 无
+
 ## [2026-04-24] query | contracts 是什么
 - 查阅页面: wiki/concepts/ai-flow/monorepo-harness.md, wiki/sources/ai-flow/monorepo-harness-plan.md
 - 归档: 否
@@ -63,6 +69,21 @@
 - 更新页面: wiki/concepts/ai-flow/harness-engineering.md（从 2KB  stub 扩展为 50KB+ 完整文档）
 - 内容覆盖: Spec-Then-Build with Gates、Co-Design、Autonomous Build、Validation、Harness 四层模型、反模式、成熟度路径、术语表
 - 新增: 文末"相关 Wiki 概念"链接区
+
+## [2026-04-23] lint | 全栈骨架健康检查
+- 检查页面数: 170
+- 发现问题: 断链 195（agent 生成的概念页含大量 bare-name 与 `concepts/fullstack/*` 占位链接）
+- 修复: 91 个改写为正确路径，7 个消歧到同域页面，97 个去除 wikilink（保留可读文本）
+- 结果: 0 错误 / 0 警告 / 0 孤儿 / 0 stub
+
+## [2026-04-23] ingest | 全栈知识库骨架构建（无 raw 源，基于 LLM 知识）
+- 新建 13 个 topic 入口（topics/fullstack/）：含前端/后端/全栈共享三类
+- 新建 79 个 concept 页：js(12)/browser(12)/framework(8)/engineering(10)/performance(8)/nodejs(10)/security(7)/ai(6)/methodology(6)
+- 新建 8 个 comparison 页（comparisons/fullstack/）：webpack-vs-vite、rest-vs-graphql、sql-vs-nosql、ssr-vs-csr-vs-ssg、monolith-vs-microservices、redux-vs-mobx-vs-zustand、npm-vs-yarn-vs-pnpm、jwt-vs-session
+- 新建 5 个 entity 页（entities/fullstack/）：vite、webpack、nodejs、typescript、prisma
+- 共新增 105 页；index.md 页面数 65 → 169（含原 React/AI Flow 体系）
+- sources 字段统一为 []（无 raw 源），后续摄入时按需补充
+- 已知：engineering/methodology 各有同名 monorepo/bff/design-patterns，按"工程视角 vs 架构视角"双留，待后续 lint 决定是否合并
 
 ## [2026-04-23] lint | 健康检查
 - 检查页面数: 65
